@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject crossHair;
     public GameObject arrowPrefab;
+    public Animator animator;
 
     Vector3 movement;
     Vector3 aim;
@@ -33,6 +34,12 @@ public class PlayerController : MonoBehaviour
         ProcessInputs();
         AimAndShoot();
         move();
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Magnitude", movement.magnitude);
+
+        
         
     }
 
@@ -45,11 +52,13 @@ public class PlayerController : MonoBehaviour
             aim.Normalize();
             isAiming = player.GetButton("Fire");
             endOfAiming = player.GetButtonDown("Fire");
+            
 
         }
         else
         {
-            movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
+            movement = new Vector3(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"), 0.0f);
+
             Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
             aim = aim + mouseMovement;
             if (aim.magnitude > 1.0f)
