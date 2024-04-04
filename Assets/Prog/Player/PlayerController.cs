@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject arrowPrefab;
     public Animator animator;
 
+
     Vector3 movement;
     Vector3 aim;
     bool isAiming;
@@ -39,8 +40,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Magnitude", movement.magnitude);
 
-        
-        
+
+
     }
 
     private void ProcessInputs()
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
             aim.Normalize();
             isAiming = player.GetButton("Fire");
             endOfAiming = player.GetButtonDown("Fire");
-            
+
 
         }
         else
@@ -69,16 +70,16 @@ public class PlayerController : MonoBehaviour
             endOfAiming = Input.GetButtonUp("Fire1");
         }
 
-        if(movement.magnitude > 1.0f)
+        if (movement.magnitude > 1.0f)
         {
             movement.Normalize();
         }
 
 
-        
-        
+
+
     }
-    
+
     private void move()
     {
         transform.position = transform.position + movement * Time.deltaTime;
@@ -88,12 +89,12 @@ public class PlayerController : MonoBehaviour
 
     private void AimAndShoot()
     {
-        
+
         Vector2 shootingDirection = new Vector2(aim.x, aim.y);
 
         if (aim.magnitude > 0.0f)
         {
-            crossHair.transform.localPosition = aim * 0.4f; 
+            crossHair.transform.localPosition = aim * 0.4f;
             crossHair.SetActive(true);
 
 
@@ -108,5 +109,4 @@ public class PlayerController : MonoBehaviour
         }
         else crossHair.SetActive(false);
     }
-
 }
