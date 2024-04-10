@@ -6,6 +6,7 @@ public class Pickup : MonoBehaviour
 {
     private Inventory inventory;
     public GameObject itemButton;
+    public Arc Arc;
 
 
     private void Start()
@@ -17,21 +18,25 @@ public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("caca");
+            
             for (int i = 0; i < inventory.slots.Length; i++)
             {
+
+                
                 if (inventory.isFull[i] == false)
                 {
+       
                     inventory.isFull[i] = true;
                     Instantiate(itemButton, inventory.slots[i].transform, false);
+                    
                     Destroy(gameObject);
+                    Arc.ArcOn = true;
                     break;
+               
                 }
             }
-        }
-        if (other.CompareTag("Projectil"))
-        {
-            Debug.Log("Touché !");
+
+           
         }
     }
 }

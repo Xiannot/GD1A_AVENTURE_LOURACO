@@ -1,4 +1,4 @@
-   using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public int playerId = 0;
     private Player player;
     public bool useController;
+    public bool arcbool;
 
     public GameObject crossHair;
     public GameObject arrowPrefab;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        arcbool = false;
     }
 
     // Update is called once per frame
@@ -36,9 +38,6 @@ public class PlayerController : MonoBehaviour
         AimAndShoot();
         move();
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Magnitude", movement.magnitude);
 
 
 
@@ -46,34 +45,57 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessInputs()
     {
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Magnitude", movement.magnitude);
         if (useController)
         {
             movement = new Vector3(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"), 0.0f);
-            aim = new Vector3(player.GetAxis("AimHorizontal"), player.GetAxis("AimVertical"), 0.0f);
-            aim.Normalize();
-            isAiming = player.GetButton("Fire");
-            endOfAiming = player.GetButtonDown("Fire");
-
-
         }
         else
         {
             movement = new Vector3(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"), 0.0f);
-
-            Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
-            aim = aim + mouseMovement;
-            if (aim.magnitude > 1.0f)
-            {
-                aim.Normalize();
-            }
-            isAiming = Input.GetButton("Fire1");
-            endOfAiming = Input.GetButtonUp("Fire1");
         }
-
-        if (movement.magnitude > 1.0f)
+        //------------------------------------------------------------------------------------------------------
+        if (arcbool)
         {
-            movement.Normalize();
+            Debug.Log("arc");
+            animator.SetFloat("HB", movement.x);
+            animator.SetFloat("VB", movement.y);
+            animator.SetFloat("MB", movement.magnitude);
+
+            if (useController)
+            {
+                movement = new Vector3(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"), 0.0f);
+                aim = new Vector3(player.GetAxis("AimHorizontal"), player.GetAxis("AimVertical"), 0.0f);
+                aim.Normalize();
+                isAiming = player.GetButton("Fire");
+                endOfAiming = player.GetButtonDown("Fire");
+            }
+            else
+            {
+                movement = new Vector3(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"), 0.0f);
+
+                Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+                aim = aim + mouseMovement;
+                if (aim.magnitude > 1.0f)
+                {
+                    aim.Normalize();
+                }
+                isAiming = Input.GetButton("Fire1");
+                endOfAiming = Input.GetButtonUp("Fire1");
+
+
+
+            }
+
+            if (movement.magnitude > 1.0f)
+            {
+                movement.Normalize();
+            }
+        
         }
+
 
 
 
