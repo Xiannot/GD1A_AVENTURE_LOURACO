@@ -17,6 +17,8 @@ public class Arc : MonoBehaviour
         {
 
             Debug.Log("True");
+
+
             if (Input.GetKeyDown("1"))
             {
 
