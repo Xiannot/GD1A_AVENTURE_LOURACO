@@ -11,12 +11,11 @@ public class Arc : MonoBehaviour
     void Update()
     {
         ArcOn = false;
-        Debug.Log("false");
+        
 
         if (ArcOn == true)
         {
 
-            Debug.Log("True");
 
 
             if (Input.GetKeyDown("1"))

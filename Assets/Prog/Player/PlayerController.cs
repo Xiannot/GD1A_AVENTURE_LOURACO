@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         //------------------------------------------------------------------------------------------------------
         if (arcbool)
         {
-            Debug.Log("arc");
+           
             animator.SetFloat("HB", movement.x);
             animator.SetFloat("VB", movement.y);
             animator.SetFloat("MB", movement.magnitude);

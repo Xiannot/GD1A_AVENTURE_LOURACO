@@ -599,6 +599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d00675c9a564514aba84d0a942230b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: 312e50d4cc7304c4cb576b32d7f9ceab, type: 2}
+  musicSlider: {fileID: 855061586}
 --- !u!1 &520616012
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +916,7 @@ GameObject:
   - component: {fileID: 855061585}
   - component: {fileID: 855061586}
   m_Layer: 5
-  m_Name: slider
+  m_Name: Music Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -986,13 +988,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1486075880}
   m_HandleRect: {fileID: 520616013}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 374029644}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: setMusicVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &962922561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,6 +1857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d00675c9a564514aba84d0a942230b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myMixer: {fileID: 0}
+  musicSlider: {fileID: 0}
 --- !u!114 &1607124819
 MonoBehaviour:
   m_ObjectHideFlags: 0
