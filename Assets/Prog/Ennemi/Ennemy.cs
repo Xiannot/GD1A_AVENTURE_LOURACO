@@ -11,6 +11,7 @@ public class Ennemy : MonoBehaviour
 
 
 
+
     private void Update()
     {
         if(target != null)
@@ -43,4 +44,6 @@ public class Ennemy : MonoBehaviour
             target = null;
         }
     }
+
+
 }

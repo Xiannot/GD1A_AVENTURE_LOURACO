@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
@@ -10,33 +10,50 @@ public class PlayerController : MonoBehaviour
     private Player player;
     public bool useController;
     public bool arcbool;
-
+    public bool sword;
+    public static PlayerController instance;
+    #region GameObject
     public GameObject crossHair;
     public GameObject arrowPrefab;
+    #endregion
+
     public Animator animator;
+
+    //sword
 
 
     Vector3 movement;
     Vector3 aim;
     bool isAiming;
-    bool endOfAiming;
+    public bool endOfAiming;
+    public bool crosshairbool;
 
     void Awake()
     {
         player = ReInput.players.GetPlayer(playerId);
+        animator.SetBool("Arc", false);
+        animator.SetBool("Sword", false);
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         arcbool = false;
+
+        if (instance != null)
+        {
+            return;
+        }
+
+        instance = this;
     }
 
     // Update is called once per frame
+
+
     void Update()
     {
 
         ProcessInputs();
         AimAndShoot();
         move();
+        crosshairfalse();
 
 
 
@@ -59,10 +76,8 @@ public class PlayerController : MonoBehaviour
         //------------------------------------------------------------------------------------------------------
         if (arcbool)
         {
-           
-            animator.SetFloat("HB", movement.x);
-            animator.SetFloat("VB", movement.y);
-            animator.SetFloat("MB", movement.magnitude);
+            animator.SetBool("Arc", true);
+            animator.SetBool("Sword", false);
 
             if (useController)
             {
@@ -70,7 +85,7 @@ public class PlayerController : MonoBehaviour
                 aim = new Vector3(player.GetAxis("AimHorizontal"), player.GetAxis("AimVertical"), 0.0f);
                 aim.Normalize();
                 isAiming = player.GetButton("Fire");
-                endOfAiming = player.GetButtonDown("Fire");
+                endOfAiming = player.GetButtonUp("Fire");
             }
             else
             {
@@ -92,8 +107,22 @@ public class PlayerController : MonoBehaviour
             if (movement.magnitude > 1.0f)
             {
                 movement.Normalize();
+
             }
+
+        }
         
+
+
+
+        if (sword)
+        {
+            animator.SetBool("Arc", false);
+            animator.SetBool("Sword", true);
+
+
+
+
         }
 
 
@@ -102,11 +131,32 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    
+        
+        
+
+    
+
     private void move()
     {
         transform.position = transform.position + movement * Time.deltaTime;
     }
 
+    public void crosshairfalse()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            crossHair.SetActive(false);
+            
+        }
+
+        if (crosshairbool == false)
+        {
+            crossHair.SetActive(false);
+
+        }
+    }
 
 
     private void AimAndShoot()
@@ -129,6 +179,24 @@ public class PlayerController : MonoBehaviour
                 Destroy(arrow, 2.0f);
             }
         }
-        else crossHair.SetActive(false);
+        else
+        {
+            crossHair.SetActive(false);
+        }
+
+            
     }
+
+    public void ArcUpdate()
+    {
+        arcbool = true;
+        Debug.Log("Tu a équipé");
+    }
+
+
 }
+
+
+
+//        Cursor.lockState = CursorLockMode.Locked;
+//Cursor.visible = false;
