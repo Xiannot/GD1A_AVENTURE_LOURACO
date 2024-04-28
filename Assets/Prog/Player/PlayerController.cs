@@ -33,15 +33,20 @@ public class PlayerController : MonoBehaviour
         player = ReInput.players.GetPlayer(playerId);
         animator.SetBool("Arc", false);
         animator.SetBool("Sword", false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         arcbool = false;
 
-        if (instance != null)
+        if (instance != null && instance != this)
         {
-            return;
+            Destroy(this.gameObject);
         }
-
-        instance = this;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
     // Update is called once per frame
@@ -54,6 +59,24 @@ public class PlayerController : MonoBehaviour
         AimAndShoot();
         move();
         crosshairfalse();
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        if (player.GetButtonDown("Consume"))
+        {
+            useController = true;
+            Debug.Log("Controller");
+        }
 
 
 
@@ -86,6 +109,7 @@ public class PlayerController : MonoBehaviour
                 aim.Normalize();
                 isAiming = player.GetButton("Fire");
                 endOfAiming = player.GetButtonUp("Fire");
+                animator.SetBool("AttackBow", false);
             }
             else
             {
@@ -99,6 +123,7 @@ public class PlayerController : MonoBehaviour
                 }
                 isAiming = Input.GetButton("Fire1");
                 endOfAiming = Input.GetButtonUp("Fire1");
+                animator.SetBool("AttackBow", false);
 
 
 
@@ -119,11 +144,27 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Arc", false);
             animator.SetBool("Sword", true);
+           
+            if (player.GetButtonDown("Fire")) 
+            {
+                animator.SetBool("AttackSword", true);
+                
 
+              
+            }
 
+            else
+            {
+                animator.SetBool("AttackSword", false);
+                
+            }
 
 
         }
+
+
+
+
 
 
 
@@ -177,6 +218,7 @@ public class PlayerController : MonoBehaviour
                 arrow.GetComponent<Rigidbody2D>().velocity = shootingDirection * 5.0f;
                 arrow.transform.Rotate(0.0f, 0.0f, Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg);
                 Destroy(arrow, 2.0f);
+                animator.SetBool("AttackBow", true);
             }
         }
         else
@@ -190,13 +232,10 @@ public class PlayerController : MonoBehaviour
     public void ArcUpdate()
     {
         arcbool = true;
-        Debug.Log("Tu a équipé");
+       
     }
 
 
 }
 
 
-
-//        Cursor.lockState = CursorLockMode.Locked;
-//Cursor.visible = false;

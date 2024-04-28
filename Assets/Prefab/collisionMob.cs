@@ -6,12 +6,12 @@ public class collisionMob : MonoBehaviour
 {
 
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag ("Player"))
         {
             PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(25);
+            playerHealth.TakeDamage(10);
         }
     }
 }

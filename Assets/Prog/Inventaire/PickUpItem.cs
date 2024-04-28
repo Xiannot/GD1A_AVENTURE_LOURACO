@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Rewired;
 
 public class PickUpItem : MonoBehaviour
 {
@@ -7,15 +8,34 @@ public class PickUpItem : MonoBehaviour
     private bool isInRange;
 
     public Item item;
-    
 
+    public int playerId = 0;
+    private Player player;
+
+
+
+    void Awake()
+    {
+        player = ReInput.players.GetPlayer(playerId);
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && isInRange)
+        if (Input.GetKeyDown(KeyCode.E) && isInRange)
         {
             TakeItem();
-            
+            Inventory.instance.ConsumeItem();
+
+
+        }
+
+        if (player.GetButtonDown("Loot") && isInRange)
+        {
+            TakeItem();
+            Inventory.instance.ConsumeItem();
+            PlayerController.instance.useController =true;
+
+
         }
     }
 

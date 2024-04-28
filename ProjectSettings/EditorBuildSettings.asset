@@ -9,9 +9,36 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: d3fd5f0302a55454ea50fee920501a09
   - enabled: 1
-    path: Assets/Scenes/Village.unity
+    path: Assets/Scenes/DonjonLevel2/Village.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Donjon.unity
+    path: Assets/Scenes/Donjon/1.unity
     guid: 599fd8e6f2823e14fbedcf0467909818
+  - enabled: 1
+    path: Assets/Scenes/Donjon/2.unity
+    guid: 3f224873a3466a842b4c3aead0acccbb
+  - enabled: 1
+    path: Assets/Scenes/Donjon/3.unity
+    guid: 8052b675f5e638449bf85510dac81d22
+  - enabled: 1
+    path: Assets/Scenes/Donjon/4.unity
+    guid: 2d7817b31318ba146adfc008f94cbfcc
+  - enabled: 1
+    path: Assets/Scenes/Donjon/5.unity
+    guid: 79181e35873088342aa0e8ed8532dda2
+  - enabled: 1
+    path: Assets/Scenes/Donjon/6.unity
+    guid: 051f285991c7b964abc953c1508ce0e0
+  - enabled: 1
+    path: Assets/Scenes/DonjonLevel2/C1.unity
+    guid: 8f3fc7bf49a0df84c83f29c30423d7a5
+  - enabled: 1
+    path: Assets/Scenes/DonjonLevel2/C2.unity
+    guid: 8560dfeb6be35764e9869598ba17b9f6
+  - enabled: 1
+    path: Assets/Scenes/DonjonLevel2/C3.unity
+    guid: 1085b26314ae9f94882f9be29028d6ef
+  - enabled: 1
+    path: Assets/Scenes/DonjonLevel2/C4.unity
+    guid: e337ac3e040154e4091049048543a942
   m_configObjects: {}

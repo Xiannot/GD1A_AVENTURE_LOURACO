@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Rewired;
 
 public class Inventory : MonoBehaviour
 {
@@ -15,27 +16,66 @@ public class Inventory : MonoBehaviour
     public Image itemUIImage;
     public Sprite emptyItemImage;
 
+    public int playerId = 0;
+    private Player player;
 
 
 
 
+    //ChangementArmeD
 
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) 
+
+        if (content.Count == 0)
         {
-            ConsumeItem();
+            return;
         }
 
+        Item currentItem = content[contentCurrentIndex];
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             GetNextItem();
+            ConsumeItem();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             GetPreviousItem();
+            ConsumeItem();
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ConsumeItem();
+        }
+
+        //rewired
+
+        if (player.GetButtonDown("ChangementArmeD"))
+        {
+            GetNextItem();
+            ConsumeItem();
+        }
+        if (player.GetButtonDown("ChangementArmeG"))
+        {
+            GetNextItem();
+            ConsumeItem();
+        }
+
+        if (currentItem.id == 1)
+        {
+
+
+            if (player.GetButtonDown("Consume"))
+            {
+                PlayerHealth.instance.HealPlayer(currentItem.hpGiven);
+                content.Remove(currentItem);
+                GetNextItem();
+                UpdateInventoryUI();
+            }
+
         }
     }
     
@@ -48,6 +88,8 @@ public class Inventory : MonoBehaviour
         }
 
         instance = this;
+
+        player = ReInput.players.GetPlayer(playerId);
     }
 
 
@@ -67,10 +109,12 @@ public class Inventory : MonoBehaviour
 
         if (currentItem.id == 1)
         {
-            PlayerHealth.instance.HealPlayer(currentItem.hpGiven);
-            content.Remove(currentItem);
-            GetNextItem();
-            UpdateInventoryUI();
+         
+
+                
+                UpdateInventoryUI();
+
+           
         }
 
         if (currentItem.id == 2)
@@ -96,18 +140,19 @@ public class Inventory : MonoBehaviour
 
     public void GetNextItem()
     {
-
-            if (content.Count == 0)
+        if (content.Count == 0)
         {
             return;
         }
 
         contentCurrentIndex++;
-        if(contentCurrentIndex > content.Count - 1)
+        if (contentCurrentIndex > content.Count - 1)
         {
             contentCurrentIndex = 0;
         }
         UpdateInventoryUI();
+
+
     }
 
     public void GetPreviousItem()

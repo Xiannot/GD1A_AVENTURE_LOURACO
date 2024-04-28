@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Tree
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: -1429004276, guid: 6ba0963a20f477846a281dd16130ebe4, type: 3}
-  - {fileID: 63925874, guid: 6ba0963a20f477846a281dd16130ebe4, type: 3}
-  - {fileID: -1078817859, guid: 6ba0963a20f477846a281dd16130ebe4, type: 3}
-  - {fileID: -1104960674, guid: 6ba0963a20f477846a281dd16130ebe4, type: 3}
-  - {fileID: -410825336, guid: 6ba0963a20f477846a281dd16130ebe4, type: 3}
+  - {fileID: 1667531882, guid: 1e6679429d267e54ca2399030c335ffb, type: 3}
+  - {fileID: 172228250, guid: 1e6679429d267e54ca2399030c335ffb, type: 3}
+  - {fileID: -206419305, guid: 1e6679429d267e54ca2399030c335ffb, type: 3}
+  - {fileID: 155612765, guid: 1e6679429d267e54ca2399030c335ffb, type: 3}
+  - {fileID: 539038969, guid: 1e6679429d267e54ca2399030c335ffb, type: 3}
   m_MinSpeed: 5
   m_MaxSpeed: 5
   m_AnimationStartTime: 0

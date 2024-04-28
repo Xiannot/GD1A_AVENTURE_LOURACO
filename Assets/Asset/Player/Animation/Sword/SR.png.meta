@@ -100,9 +100,9 @@ TextureImporter:
       name: SR_0
       rect:
         serializedVersion: 2
-        x: 21
+        x: 13
         y: 0
-        width: 22
+        width: 30
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -121,9 +121,9 @@ TextureImporter:
       name: SR_1
       rect:
         serializedVersion: 2
-        x: 73
+        x: 65
         y: 0
-        width: 22
+        width: 30
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -142,9 +142,9 @@ TextureImporter:
       name: SR_4
       rect:
         serializedVersion: 2
-        x: 125
+        x: 117
         y: 0
-        width: 22
+        width: 30
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -163,9 +163,9 @@ TextureImporter:
       name: SR_5
       rect:
         serializedVersion: 2
-        x: 177
+        x: 169
         y: 0
-        width: 22
+        width: 30
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

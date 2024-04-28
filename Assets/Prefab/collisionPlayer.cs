@@ -11,7 +11,7 @@ public class collisionPlayer : MonoBehaviour
         if (collision.transform.CompareTag ("Ennemi"))
         {
             EnnemiHeal ennemiHeal = collision.transform.GetComponent<EnnemiHeal>();
-            ennemiHeal.TakeDamage(25);
+            ennemiHeal.TakeDamage(15);
         }
     }
 }

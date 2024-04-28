@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] objects;
+  //  public GameObject[] objects;
+    public static GameManager instance;
+
+    [HideInInspector]
+    public string previousZone;
 
     private void Awake()
     {
-        foreach (var element in objects)
+
+     //   foreach (var element in objects)
+       // {
+      //      DontDestroyOnLoad(element);
+     //   }
+
+        if (instance != null && instance != this)
         {
-            DontDestroyOnLoad(element);
+            Destroy(this.gameObject);
         }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+
+
     }
 }

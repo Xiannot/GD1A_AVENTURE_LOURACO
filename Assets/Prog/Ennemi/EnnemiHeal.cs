@@ -19,6 +19,11 @@ public class EnnemiHeal : MonoBehaviour
 
     public static EnnemiHeal instance;
 
+    [Header("Loot")]
+    public List<LootItem> lootTable = new List<LootItem>();
+
+
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -47,15 +52,41 @@ public class EnnemiHeal : MonoBehaviour
 
 
     }
+
+
+
+
+
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         HealthBarEnnemi.SetHealth(currentHealth);
         StartCoroutine(invunerability());
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
+
+            foreach(LootItem lootItem in lootTable)
+            {
+                if(Random.Range(0f, 100f) <= lootItem.dropChance)
+                {
+                    InstantiateLoot(lootItem.itemPrefab);
+                }
+            }
+
             Destroy(gameObject);
+ 
+        }
+    }
+
+    void InstantiateLoot(GameObject loot)
+    {
+        if(loot)
+        {
+            GameObject droppedLoot = Instantiate(loot, transform.position, Quaternion.identity);
+
+          
         }
     }
 
